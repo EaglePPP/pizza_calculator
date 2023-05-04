@@ -1,0 +1,56 @@
+import argparse
+import math
+
+# 创建命令行参数解析器
+parser = argparse.ArgumentParser(description="计算披萨的直径和面积")
+parser.add_argument("diameter", type=float, help="披萨的直径")
+parser.add_argument("unit", type=str, help="直径的单位，in或cm")
+
+# 解析命令行参数
+args = parser.parse_args()
+
+# 从命令行参数中获取披萨的直径和单位
+diameter = args.diameter
+unit = args.unit.lower()
+
+if unit == "in":
+    # 英寸转换为厘米
+    diameter_cm = diameter * 2.54
+    # 将直径转换为分米和米
+    diameter_dm = diameter_cm / 10.0
+    diameter_m = diameter_cm / 100.0
+    # 输出直径的厘米、分米和米表示
+    print(
+        "直径为: {:.2f}厘米, {:.2f}分米, {:.2f}米".format(diameter_cm, diameter_dm, diameter_m)
+    )
+
+    # 计算披萨的面积（平方厘米）
+    area_cm2 = math.pi * (diameter_cm / 2) ** 2
+
+    # 将平方厘米转换为平方分米和平方米
+    area_dm2 = area_cm2 / 100.0
+    area_m2 = area_cm2 / 10000.0
+
+    # 输出面积的平方厘米、平方分米和平方米表示
+    print("面积为: {:.2f}平方厘米, {:.2f}平方分米, {:.2f}平方米".format(area_cm2, area_dm2, area_m2))
+
+else:
+    # 厘米转换为英寸
+    diameter_in = diameter / 2.54
+    # 将直径转换为英尺和码
+    diameter_ft = diameter_in / 12.0
+    diameter_yd = diameter_ft / 3.0
+    # 输出直径的英寸、英尺和码表示
+    print(
+        "直径为: {:.2f}英寸, {:.2f}英尺, {:.2f}码".format(diameter_in, diameter_ft, diameter_yd)
+    )
+
+    # 计算披萨的面积（平方英寸）
+    area_in2 = math.pi * (diameter_in / 2) ** 2
+
+    # 将平方英寸转换为平方英尺和平方码
+    area_ft2 = area_in2 / 144.0
+    area_yd2 = area_ft2 / 9.0
+
+    # 输出面积的平方英寸、平方英尺和平方码表示
+    print("面积为: {:.2f}平方英寸, {:.2f}平方英尺, {:.2f}平方码".format(area_in2, area_ft2, area_yd2))
