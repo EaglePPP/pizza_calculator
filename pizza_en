@@ -1,0 +1,52 @@
+import argparse
+import math
+
+# create argument parser
+parser = argparse.ArgumentParser(description='Calculate the diameter and area of a pizza')
+parser.add_argument('diameter', type=float, help='The diameter of the pizza')
+parser.add_argument('unit', type=str, help='The unit of the diameter, either in or cm')
+
+# parse arguments
+args = parser.parse_args()
+
+# get the diameter and unit from the arguments
+diameter = args.diameter
+unit = args.unit.lower()
+
+if unit == 'in':
+    # convert inches to centimeters
+    diameter_cm = diameter * 2.54
+    # convert diameter to decimeters and meters
+    diameter_dm = diameter_cm / 10.0
+    diameter_m = diameter_cm / 100.0
+    # print diameter in centimeters, decimeters, and meters
+    print("Diameter: {:.2f} cm, {:.2f} dm, {:.2f} m".format(diameter_cm, diameter_dm, diameter_m))
+
+    # calculate area of the pizza in square centimeters
+    area_cm2 = math.pi * (diameter_cm/2)**2
+
+    # convert area to square decimeters and square meters
+    area_dm2 = area_cm2 / 100.0
+    area_m2 = area_cm2 / 10000.0
+
+    # print area in square centimeters, square decimeters, and square meters
+    print("Area: {:.2f} cm², {:.2f} dm², {:.2f} m²".format(area_cm2, area_dm2, area_m2))
+
+else:
+    # convert centimeters to inches
+    diameter_in = diameter / 2.54
+    # convert diameter to feet and yards
+    diameter_ft = diameter_in / 12.0
+    diameter_yd = diameter_ft / 3.0
+    # print diameter in inches, feet, and yards
+    print("Diameter: {:.2f} in, {:.2f} ft, {:.2f} yd".format(diameter_in, diameter_ft, diameter_yd))
+
+    # calculate area of the pizza in square inches
+    area_in2 = math.pi * (diameter_in/2)**2
+
+    # convert area to square feet and square yards
+    area_ft2 = area_in2 / 144.0
+    area_yd2 = area_ft2 / 9.0
+
+    # print area in square inches, square feet, and square yards
+    print("Area: {:.2f} in², {:.2f} ft², {:.2f} yd²".format(area_in2, area_ft2, area_yd2))
